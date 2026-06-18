@@ -16,7 +16,7 @@
     "lint": "concurrently \"cd Backend && npm run lint\" \"cd Frontend && npm run lint\""
   },
   "engines": {
-    "node": ">=18.0.0",
+    "node": ">=20.0.0",
     "npm": ">=8.0.0"
   },
   "dependencies": {
