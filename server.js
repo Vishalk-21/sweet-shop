@@ -3,7 +3,9 @@
  * Server initialization and middleware setup
  */
 
-require('dotenv').config({ path: './Backend/.env' });
+const path = require('path');
+
+require('dotenv').config({ path: path.join(__dirname, 'Backend', '.env') });
 const app = require('./Backend/src/app');
 const connectDB = require('./Backend/src/db/db');
 

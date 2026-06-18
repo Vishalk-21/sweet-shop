@@ -9,36 +9,17 @@
 
 ## ✅ Step 1: Prepare Your Code (2 minutes)
 
-### 1.1 Update Backend CORS
-Edit: `Backend/src/app.js`
+### 1.1 Backend CORS
+The backend reads your deployed frontend URL from a Railway environment variable:
 
-Find this line:
-```javascript
-const corsOptions = {
-    origin: function (origin, callback) {
-        const allowedOrigins = [
-            'http://localhost:5173',
-            'http://127.0.0.1:5173',
-            'http://localhost:5174',
-            'http://127.0.0.1:5174',
-            'http://localhost:3000',
-            'http://127.0.0.1:3000'
-        ];
+```env
+FRONTEND_URL=https://your-vercel-project.vercel.app
 ```
 
-Replace with:
-```javascript
-const corsOptions = {
-    origin: function (origin, callback) {
-        const allowedOrigins = [
-            'http://localhost:5173',
-            'http://127.0.0.1:5173',
-            'http://localhost:5174',
-            'http://127.0.0.1:5174',
-            'http://localhost:3000',
-            'http://127.0.0.1:3000',
-            'https://*.vercel.app'  // Add this line for Vercel
-        ];
+For multiple frontend URLs, separate them with commas:
+
+```env
+FRONTEND_URL=https://your-vercel-project.vercel.app,https://www.yourdomain.com
 ```
 
 ### 1.2 Create `vercel.json` in root directory
@@ -142,40 +123,35 @@ Visit: https://railway.app
 - Select your sweet-shop repository
 
 ### 3.4 Configure Backend
-- Railway will auto-detect the structure
-- Select "Backend" folder as the root
+- Keep the Railway service root as the repository root
+- `railway.json` sets the backend build command to `null` and the start command to `npm start`
+- The root `package.json` installs the backend dependencies and runs `node server.js`
 
 ### 3.5 Add Environment Variables
 In Railway dashboard, go to "Variables" and add:
 
 ```
-MONGO_URI=mongodb+srv://21230vishal_db_user:Vishal9410@project1.tu3of7b.mongodb.net/SweetShop
+MONGO_URI=mongodb+srv://YOUR_USER:YOUR_PASSWORD@YOUR_CLUSTER.mongodb.net/SweetShop
 
-JWT_SECRET=sweet_shop_secret_key_2024
+JWT_SECRET=use-a-long-random-secret
 
-IMAGE_PRIVATE_KEY=private_8IkxV2gYS4Nv7bdABTvVaQXeUUU=
+IMAGE_PRIVATE_KEY=your-imagekit-private-key
 
-IMAGE_PUBLIC_KEY=public_sfEyqebZ3g2lmw71F+JhMOIglHg=
+IMAGE_PUBLIC_KEY=your-imagekit-public-key
 
-IMAGE_URL_ENDPOINT=https://ik.imagekit.io/https://ik.imagekit.io/pg81w4dbz
+IMAGE_URL_ENDPOINT=https://ik.imagekit.io/your-endpoint
 
 NODE_ENV=production
 
-PORT=3000
+FRONTEND_URL=https://your-vercel-project.vercel.app
 ```
 
-### 3.6 Create `Procfile` in Backend directory
-Create file: `Backend/Procfile`
+Do not set `PORT` manually on Railway. Railway provides it automatically.
 
-Add:
-```
-web: node ../server.js
-```
-
-Push to GitHub:
+### 3.6 Push to GitHub
 ```bash
 git add .
-git commit -m "Add Procfile for Railway"
+git commit -m "Fix Railway backend deployment"
 git push
 ```
 

@@ -8,6 +8,11 @@ const orderRoutes = require('./routes/order.route')
 const messageRoutes = require('./routes/message.route')
 
 // CORS Configuration
+const configuredOrigins = (process.env.FRONTEND_URL || process.env.CLIENT_URL || '')
+    .split(',')
+    .map(origin => origin.trim())
+    .filter(Boolean)
+
 const corsOptions = {
     origin: function (origin, callback) {
         const allowedOrigins = [
@@ -17,19 +22,19 @@ const corsOptions = {
             'http://127.0.0.1:5174',
             'http://localhost:3000',
             'http://127.0.0.1:3000',
-            'https://*.vercel.app'  // Add this line for Vercel
-        ];
+            ...configuredOrigins
+        ]
         if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
+            callback(null, true)
         } else {
-            callback(new Error('Not allowed by CORS'));
+            callback(new Error('Not allowed by CORS'))
         }
     },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     optionsSuccessStatus: 200
-};
+}
 
 app.use(cors(corsOptions))
 
