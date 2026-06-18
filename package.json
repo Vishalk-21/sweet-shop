@@ -4,6 +4,7 @@
   "description": "Full-stack e-commerce platform for sweet products",
   "private": true,
   "scripts": {
+    "start": "node server.js",
     "server": "cd Backend && npm start",
     "server:dev": "cd Backend && npm run dev",
     "client": "cd Frontend && npm run dev",
@@ -14,14 +15,22 @@
     "test": "concurrently \"cd Backend && npm test\" \"cd Frontend && npm test\"",
     "lint": "concurrently \"cd Backend && npm run lint\" \"cd Frontend && npm run lint\""
   },
-  "devDependencies": {
-    "concurrently": "^8.0.0"
-  },
   "engines": {
-    "node": ">=16.0.0",
+    "node": ">=18.0.0",
     "npm": ">=8.0.0"
   },
   "dependencies": {
-    "dotenv": "^17.4.2"
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^4.18.2",
+    "imagekit": "^6.0.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.7.0",
+    "multer": "^2.2.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.0.0"
   }
 }
