@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  # MongoDB Database
+  mongodb:
+    image: mongo:latest
+    container_name: sweet-shop-db
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - mongodb_data:/data/db
+
+  # Backend API
+  backend:
+    build: .
+    container_name: sweet-shop-api
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      MONGODB_URI: mongodb://admin:password@mongodb:27017/sweet-shop?authSource=admin
+      JWT_SECRET: your-secret-key
+      NODE_ENV: production
+    depends_on:
+      - mongodb
+    volumes:
+      - ./Backend/src:/app/Backend/src
+
+  # Frontend (optional - can be served separately)
+  frontend:
+    build:
+      context: .
+      dockerfile: Frontend.Dockerfile
+    container_name: sweet-shop-ui
+    restart: always
+    ports:
+      - "80:3001"
+    depends_on:
+      - backend
+
+volumes:
+  mongodb_data:

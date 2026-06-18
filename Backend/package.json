@@ -1,0 +1,40 @@
+{
+  "name": "sweet-shop",
+  "version": "1.0.0",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node ../server.js",
+    "dev": "cd .. && nodemon server.js",
+    "seed": "node seed.js",
+    "lint": "eslint src --fix",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "Sweet Shop API Server",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "imagekit": "^6.0.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.7.0",
+    "multer": "^2.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "nodemon": "^3.0.0",
+    "jest": "^29.0.0"
+  },
+  
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "env": {
+    "VITE_API_URL": "@VITE_API_URL"
+  }
+}
+

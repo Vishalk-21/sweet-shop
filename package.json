@@ -1,0 +1,27 @@
+{
+  "name": "sweet-shop",
+  "version": "1.0.0",
+  "description": "Full-stack e-commerce platform for sweet products",
+  "private": true,
+  "scripts": {
+    "server": "cd Backend && npm start",
+    "server:dev": "cd Backend && npm run dev",
+    "client": "cd Frontend && npm run dev",
+    "client:build": "cd Frontend && npm run build",
+    "dev": "concurrently \"npm run server:dev\" \"npm run client\"",
+    "build": "npm run client:build",
+    "seed": "cd Backend && npm run seed",
+    "test": "concurrently \"cd Backend && npm test\" \"cd Frontend && npm test\"",
+    "lint": "concurrently \"cd Backend && npm run lint\" \"cd Frontend && npm run lint\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2"
+  }
+}

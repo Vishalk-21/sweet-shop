@@ -1,0 +1,393 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  color: #f5f5f5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ffc345;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ffb400;
+}
+
+/* Animation classes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.8s ease-out forwards;
+}
+
+/* Glow effect */
+.glow {
+  box-shadow: 0 0 20px rgba(255, 195, 69, 0.3);
+}
+
+.glow:hover {
+  box-shadow: 0 0 30px rgba(255, 195, 69, 0.6);
+}
+
+.owner-dashboard {
+  background:
+    radial-gradient(circle at 15% 12%, rgba(255, 180, 0, 0.18), transparent 30%),
+    radial-gradient(circle at 86% 10%, rgba(34, 211, 238, 0.13), transparent 26%),
+    radial-gradient(circle at 55% 90%, rgba(244, 63, 94, 0.12), transparent 28%),
+    #070707;
+}
+
+.dashboard-input {
+  width: 100%;
+  border-radius: 0.375rem;
+  border: 1px solid rgba(255, 195, 69, 0.34);
+  background: rgba(17, 24, 39, 0.9);
+  color: #fffbf5;
+  min-height: 2.75rem;
+  padding: 0.65rem 0.85rem;
+  outline: none;
+}
+
+.dashboard-input:focus {
+  border-color: #ffc345;
+  box-shadow: 0 0 0 3px rgba(255, 195, 69, 0.16);
+}
+
+.sweet-loader {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 9999px;
+  background:
+    radial-gradient(circle at 50% 22%, #fffbf5 0 12%, transparent 13%),
+    conic-gradient(from 0deg, #ffc345, #22d3ee, #fb7185, #ffc345);
+  animation: sweetSpin 1.1s linear infinite;
+  box-shadow: 0 0 35px rgba(255, 195, 69, 0.35);
+}
+
+.owner-video-loop {
+  position: relative;
+  min-height: 21rem;
+  overflow: hidden;
+  background:
+    linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(17, 24, 39, 0.65)),
+    radial-gradient(circle at 30% 25%, rgba(255, 195, 69, 0.35), transparent 24%);
+}
+
+.video-topbar {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+  color: #fffbf5;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.oven-glow {
+  position: absolute;
+  left: 50%;
+  top: 47%;
+  width: 13rem;
+  height: 13rem;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(255, 180, 0, 0.78), rgba(251, 113, 133, 0.28) 42%, transparent 70%);
+  transform: translate(-50%, -50%);
+  animation: ovenPulse 3.2s ease-in-out infinite;
+}
+
+.shelf {
+  position: absolute;
+  left: 11%;
+  right: 11%;
+  height: 0.7rem;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.08), rgba(255,195,69,0.5), rgba(255,255,255,0.08));
+  box-shadow: 0 0 26px rgba(255, 195, 69, 0.16);
+}
+
+.shelf-one {
+  top: 38%;
+}
+
+.shelf-two {
+  top: 63%;
+}
+
+.steam {
+  position: absolute;
+  bottom: 33%;
+  width: 2rem;
+  height: 7rem;
+  border-radius: 9999px;
+  background: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,0.22), rgba(255,255,255,0));
+  filter: blur(6px);
+  animation: steamRise 4s ease-in-out infinite;
+}
+
+.steam-one {
+  left: 32%;
+}
+
+.steam-two {
+  left: 47%;
+  animation-delay: 1.1s;
+}
+
+.steam-three {
+  left: 62%;
+  animation-delay: 2s;
+}
+
+.sweet {
+  position: absolute;
+  z-index: 3;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 1rem 1rem 1.3rem 1.3rem;
+  background:
+    radial-gradient(circle at 30% 24%, rgba(255,255,255,0.85) 0 9%, transparent 10%),
+    linear-gradient(135deg, #fda4af, #f43f5e);
+  box-shadow: 0 16px 35px rgba(0,0,0,0.35);
+  animation: sweetFloat 5.8s ease-in-out infinite;
+}
+
+.sweet::after {
+  content: "";
+  position: absolute;
+  left: 16%;
+  right: 16%;
+  bottom: 18%;
+  height: 0.45rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.56);
+}
+
+.sweet-one {
+  left: 18%;
+  top: 42%;
+}
+
+.sweet-two {
+  left: 42%;
+  top: 29%;
+  background:
+    radial-gradient(circle at 30% 24%, rgba(255,255,255,0.85) 0 9%, transparent 10%),
+    linear-gradient(135deg, #67e8f9, #0ea5e9);
+  animation-delay: 0.8s;
+}
+
+.sweet-three {
+  right: 18%;
+  top: 47%;
+  background:
+    radial-gradient(circle at 30% 24%, rgba(255,255,255,0.85) 0 9%, transparent 10%),
+    linear-gradient(135deg, #fde68a, #f59e0b);
+  animation-delay: 1.5s;
+}
+
+.sweet-four {
+  left: 56%;
+  top: 66%;
+  width: 2.8rem;
+  height: 2.8rem;
+  background:
+    radial-gradient(circle at 30% 24%, rgba(255,255,255,0.85) 0 9%, transparent 10%),
+    linear-gradient(135deg, #86efac, #22c55e);
+  animation-delay: 2.2s;
+}
+
+.ticket {
+  position: absolute;
+  z-index: 4;
+  width: 5.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255,255,255,0.35);
+  background: rgba(255, 251, 245, 0.88);
+  color: #111827;
+  padding: 0.75rem;
+  box-shadow: 0 18px 45px rgba(0,0,0,0.28);
+  animation: ticketDrift 6s ease-in-out infinite;
+}
+
+.ticket span {
+  display: block;
+  font-size: 0.64rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.ticket strong {
+  display: block;
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.ticket-one {
+  left: 9%;
+  top: 17%;
+}
+
+.ticket-two {
+  right: 9%;
+  top: 22%;
+  animation-delay: 1.4s;
+}
+
+.conveyor {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  height: 5rem;
+  gap: 1rem;
+  align-items: center;
+  overflow: hidden;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  background: linear-gradient(90deg, rgba(17, 24, 39, 0.95), rgba(31, 41, 55, 0.9));
+}
+
+.conveyor span {
+  width: 6rem;
+  height: 0.75rem;
+  flex: 0 0 auto;
+  border-radius: 9999px;
+  background: rgba(255,255,255,0.18);
+  animation: beltMove 2.4s linear infinite;
+}
+
+@keyframes sweetSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ovenPulse {
+  0%, 100% {
+    opacity: 0.78;
+    transform: translate(-50%, -50%) scale(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+}
+
+@keyframes steamRise {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem) scaleX(0.55);
+  }
+  35% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-3.5rem) scaleX(1.25);
+  }
+}
+
+@keyframes sweetFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-1rem) rotate(3deg);
+  }
+}
+
+@keyframes ticketDrift {
+  0%, 100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(0.7rem) rotate(3deg);
+  }
+}
+
+@keyframes beltMove {
+  from {
+    transform: translateX(-7rem);
+  }
+  to {
+    transform: translateX(24rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sweet-loader,
+  .oven-glow,
+  .steam,
+  .sweet,
+  .ticket,
+  .conveyor span {
+    animation: none;
+  }
+}
