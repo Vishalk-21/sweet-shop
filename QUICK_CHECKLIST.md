@@ -32,7 +32,7 @@ URL: https://render.com
    Region: Singapore (or closest)
    Runtime: Node
    Build: cd Backend && npm install
-   Start: node ../server.js
+   Start: node server.js
    Plan: FREE ← IMPORTANT
 5. Click "Create Web Service"
 ⏱️ Time: 3 minutes

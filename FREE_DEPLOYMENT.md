@@ -102,7 +102,7 @@ Visit: https://render.com
 - **Name:** sweet-shop-backend
 - **Environment:** Node
 - **Build Command:** `npm install`
-- **Start Command:** `node Backend/server.js`
+- **Start Command:** `node server.js`
 - **Plan:** Free (select this!)
 
 ### 3.5 Add Environment Variables

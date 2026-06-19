@@ -96,7 +96,7 @@ PORT=3000
 **3.4 Update Railway with Procfile:**
 Create `Procfile` in Backend directory:
 ```
-web: node ../server.js
+web: node server.js
 ```
 
 **3.5 Deploy:**
@@ -184,7 +184,7 @@ git push -u origin main
 - **Name:** sweet-shop-backend
 - **Environment:** Node
 - **Build Command:** `cd Backend && npm install`
-- **Start Command:** `node ../server.js`
+- **Start Command:** `node server.js`
 - **Plan:** Free (or Paid for production)
 
 **2.3 Add Environment Variables:**

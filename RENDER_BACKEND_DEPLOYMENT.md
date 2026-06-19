@@ -37,7 +37,7 @@ Visit: https://render.com
 | Branch | main |
 | Runtime | Node |
 | Build Command | `cd Backend && npm install` |
-| Start Command | `node ../server.js` |
+| Start Command | `node server.js` |
 | Plan | **FREE** ← Select this! |
 
 ### 2.3 Save Web Service

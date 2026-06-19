@@ -66,7 +66,7 @@
 4. Configure:
    - Name: sweet-shop-backend
    - Build Command: cd Backend && npm install
-   - Start Command: node ../server.js
+   - Start Command: node server.js
    - Plan: FREE (important!)
 5. Click "Create Web Service"
 ```
