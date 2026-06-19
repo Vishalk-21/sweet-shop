@@ -2,7 +2,12 @@ import axios from 'axios'
 import { useStore } from '../store/store'
 
 // Create axios instance with base URL
-const apiBaseURL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api'
+const normalizeApiBaseURL = (baseURL) => {
+    const url = (baseURL || 'http://localhost:3000/api').trim().replace(/\/+$/, '')
+    return url.endsWith('/api') ? url : `${url}/api`
+}
+
+const apiBaseURL = normalizeApiBaseURL(import.meta.env.VITE_API_URL)
 
 const api = axios.create({
     baseURL: apiBaseURL,
