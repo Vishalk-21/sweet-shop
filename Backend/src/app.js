@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
+const mongoose = require('mongoose')
 const app = express()
 const authRoutes = require('./routes/auth.route')
 const productRoutes = require('./routes/product.route')
@@ -43,8 +44,11 @@ app.use(cookieParser())
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
+    const databaseStates = ['disconnected', 'connected', 'connecting', 'disconnecting']
+
     res.status(200).json({ 
         message: 'Backend is running',
+        database: databaseStates[mongoose.connection.readyState] || 'unknown',
         timestamp: new Date().toISOString()
     })
 })

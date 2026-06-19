@@ -135,11 +135,11 @@ MONGO_URI=mongodb+srv://YOUR_USER:YOUR_PASSWORD@YOUR_CLUSTER.mongodb.net/SweetSh
 
 JWT_SECRET=use-a-long-random-secret
 
-IMAGE_PRIVATE_KEY=your-imagekit-private-key
+IMAGEKIT_PRIVATE_KEY=your-imagekit-private-key
 
-IMAGE_PUBLIC_KEY=your-imagekit-public-key
+IMAGEKIT_PUBLIC_KEY=your-imagekit-public-key
 
-IMAGE_URL_ENDPOINT=https://ik.imagekit.io/your-endpoint
+IMAGEKIT_URL_ENDPOINT=https://ik.imagekit.io/your-endpoint
 
 NODE_ENV=production
 

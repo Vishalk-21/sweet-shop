@@ -8,7 +8,7 @@ const User = require('./src/model/user.model')
 async function createOwnerAccount() {
     try {
         // Connect to MongoDB
-        await mongoose.connect(process.env.MONGO_URI)
+        await mongoose.connect(process.env.MONGO_URI || process.env.MONGODB_URI)
         console.log('MongoDB connected')
 
         // Check if owner already exists

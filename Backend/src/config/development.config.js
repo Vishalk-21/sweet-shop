@@ -10,7 +10,7 @@ module.exports = {
 
   // Database
   mongodb: {
-    uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/sweet-shop',
+    uri: process.env.MONGO_URI || process.env.MONGODB_URI || 'mongodb://localhost:27017/sweet-shop',
   },
 
   // JWT
