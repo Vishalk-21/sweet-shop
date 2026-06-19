@@ -31,7 +31,7 @@ URL: https://render.com
    Name: sweet-shop-backend
    Region: Singapore (or closest)
    Runtime: Node
-   Build: cd Backend && npm install
+   Build: npm install && cd Backend && npm install
    Start: node server.js
    Plan: FREE ← IMPORTANT
 5. Click "Create Web Service"

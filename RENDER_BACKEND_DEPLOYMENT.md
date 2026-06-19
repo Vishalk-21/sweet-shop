@@ -36,7 +36,7 @@ Visit: https://render.com
 | Region | Singapore (or closest to your users) |
 | Branch | main |
 | Runtime | Node |
-| Build Command | `cd Backend && npm install` |
+| Build Command | `npm install && cd Backend && npm install` |
 | Start Command | `node server.js` |
 | Plan | **FREE** ← Select this! |
 

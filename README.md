@@ -32,7 +32,7 @@ cd sweet-shop
 2. **Install dependencies**
 ```bash
 # Install backend dependencies
-cd Backend && npm install
+npm install && cd Backend && npm install
 
 # Install frontend dependencies
 cd ../Frontend && npm install

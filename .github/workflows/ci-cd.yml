@@ -33,7 +33,7 @@ jobs:
       - name: Install dependencies
         run: |
           npm install
-          cd Backend && npm install
+          npm install && cd Backend && npm install
           cd ../Frontend && npm install
 
       - name: Lint

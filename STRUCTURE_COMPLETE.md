@@ -175,7 +175,7 @@ npm run dev
 ```bash
 # Install dependencies
 npm install
-cd Backend && npm install
+npm install && cd Backend && npm install
 cd ../Frontend && npm install
 
 # Configure environment

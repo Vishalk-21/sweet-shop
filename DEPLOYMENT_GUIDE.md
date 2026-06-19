@@ -183,7 +183,7 @@ git push -u origin main
 **2.2 Configure:**
 - **Name:** sweet-shop-backend
 - **Environment:** Node
-- **Build Command:** `cd Backend && npm install`
+- **Build Command:** `npm install && cd Backend && npm install`
 - **Start Command:** `node server.js`
 - **Plan:** Free (or Paid for production)
 
