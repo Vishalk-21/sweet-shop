@@ -44,23 +44,27 @@ export default function Cart() {
   }
 
   return (
-    <div className="bg-gradient-to-b from-gray-900 to-gray-800 min-h-screen py-20">
+    <div className="bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 min-h-screen py-20">
       <div className="max-w-5xl mx-auto px-4">
-        <motion.h1
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="text-5xl font-bold text-gold-400 mb-12"
+        <motion.div
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-12"
         >
-          Shopping Cart 🛒
-        </motion.h1>
+          <h1 className="text-5xl md:text-6xl font-bold mb-2 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+            🛒 Shopping Cart
+          </h1>
+          <p className="text-gray-400">Manage your delicious orders</p>
+        </motion.div>
 
         {error && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="bg-red-600 text-white p-3 rounded-lg mb-6"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-red-500/20 border border-red-500/50 text-red-200 p-4 rounded-lg mb-6 flex items-start gap-2"
           >
-            {error}
+            <span className="text-lg">⚠️</span>
+            <span>{error}</span>
           </motion.div>
         )}
 
@@ -68,15 +72,24 @@ export default function Cart() {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="text-center py-20 bg-gray-800 rounded-lg"
+            className="text-center py-24 bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl border border-yellow-400/20"
           >
-            <p className="text-3xl text-cream-200 mb-6">Your cart is empty</p>
+            <motion.div
+              animate={{ y: [0, -20, 0] }}
+              transition={{ duration: 3, repeat: Infinity }}
+              className="text-6xl mb-4"
+            >
+              🛍️
+            </motion.div>
+            <p className="text-3xl text-gray-300 mb-2 font-bold">Your cart is empty</p>
+            <p className="text-gray-400 mb-8">Add some delicious items to get started!</p>
             <Link to="/products">
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                className="bg-gold-500 hover:bg-gold-600 text-gray-900 px-8 py-3 rounded-lg font-bold"
+                whileHover={{ scale: 1.08, boxShadow: '0 0 30px rgba(255, 200, 50, 0.5)' }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-gray-900 px-10 py-4 rounded-full font-bold text-lg"
               >
-                Continue Shopping
+                Continue Shopping 🛒
               </motion.button>
             </Link>
           </motion.div>
@@ -91,58 +104,83 @@ export default function Cart() {
                   hidden: { opacity: 0 },
                   visible: {
                     opacity: 1,
-                    transition: { staggerChildren: 0.1 }
+                    transition: { staggerChildren: 0.1, delayChildren: 0.2 }
                   }
                 }}
                 className="space-y-4"
               >
-                {cart.map((item) => (
+                {cart.map((item, index) => (
                   <motion.div
                     key={item._id}
                     variants={{
-                      hidden: { opacity: 0, x: -20 },
-                      visible: { opacity: 1, x: 0 }
+                      hidden: { opacity: 0, x: -30, scale: 0.9 },
+                      visible: { 
+                        opacity: 1, 
+                        x: 0,
+                        scale: 1,
+                        transition: { type: 'spring', stiffness: 100, damping: 20 }
+                      }
                     }}
-                    className="bg-gray-800 p-4 rounded-lg flex gap-4 glow"
+                    whileHover={{ y: -5, boxShadow: '0 10px 30px rgba(255, 200, 50, 0.2)' }}
+                    className="bg-gradient-to-r from-gray-800/50 to-gray-900/50 p-6 rounded-xl flex gap-6 border border-yellow-400/20 hover:border-yellow-400/50 transition-all duration-300"
                   >
-                    <img
+                    <motion.img
+                      whileHover={{ scale: 1.1 }}
                       src={item.image}
                       alt={item.name}
-                      className="w-24 h-24 object-cover rounded-lg"
+                      className="w-28 h-28 object-cover rounded-lg shadow-lg"
                     />
 
                     <div className="flex-1">
-                      <h3 className="text-xl font-bold text-gold-400">{item.name}</h3>
-                      <p className="text-cream-200">₹{item.price}</p>
+                      <h3 className="text-xl font-bold bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent mb-2">
+                        {item.name}
+                      </h3>
+                      <p className="text-gray-400 mb-4 text-sm">{item.category}</p>
+                      <p className="text-2xl font-bold text-yellow-400">₹{item.price}</p>
 
-                      <div className="flex gap-2 mt-4">
-                        <button
+                      {/* Quantity Controls */}
+                      <motion.div className="flex gap-2 mt-4">
+                        <motion.button
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
                           onClick={() => updateQuantity(item._id, item.quantity - 1)}
                           disabled={item.quantity === 1}
-                          className="bg-gray-700 text-gold-400 px-3 py-1 rounded disabled:opacity-50"
+                          className="bg-gray-900/60 hover:bg-gray-900 text-yellow-400 px-4 py-2 rounded-lg disabled:opacity-30 transition"
                         >
                           −
-                        </button>
-                        <span className="text-cream-200 px-4 py-1">{item.quantity}</span>
-                        <button
+                        </motion.button>
+                        <span className="text-gray-300 px-6 py-2 bg-gray-900/30 rounded-lg font-semibold">
+                          {item.quantity}
+                        </span>
+                        <motion.button
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
                           onClick={() => updateQuantity(item._id, item.quantity + 1)}
-                          className="bg-gray-700 text-gold-400 px-3 py-1 rounded"
+                          className="bg-gray-900/60 hover:bg-gray-900 text-yellow-400 px-4 py-2 rounded-lg transition"
                         >
                           +
-                        </button>
-                      </div>
+                        </motion.button>
+                      </motion.div>
                     </div>
 
-                    <div className="text-right">
-                      <p className="text-xl font-bold text-gold-400 mb-4">
-                        ₹{item.price * item.quantity}
-                      </p>
-                      <motion.button
-                        whileHover={{ scale: 1.1 }}
-                        onClick={() => removeFromCart(item._id)}
-                        className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded"
+                    <div className="text-right flex flex-col justify-between">
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.5 }}
                       >
-                        Remove
+                        <p className="text-sm text-gray-400">Subtotal</p>
+                        <p className="text-2xl font-bold bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+                          ₹{item.price * item.quantity}
+                        </p>
+                      </motion.div>
+                      <motion.button
+                        whileHover={{ scale: 1.1, backgroundColor: 'rgb(220, 38, 38)' }}
+                        whileTap={{ scale: 0.9 }}
+                        onClick={() => removeFromCart(item._id)}
+                        className="bg-red-600/80 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-semibold transition"
+                      >
+                        🗑️ Remove
                       </motion.button>
                     </div>
                   </motion.div>
@@ -152,47 +190,81 @@ export default function Cart() {
 
             {/* Summary */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="bg-gray-800 p-6 rounded-lg h-fit glow sticky top-20"
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ delay: 0.4 }}
+              className="bg-gradient-to-br from-gray-800/60 to-gray-900/60 p-8 rounded-2xl h-fit sticky top-24 border border-yellow-400/20 shadow-2xl backdrop-blur"
             >
-              <h2 className="text-2xl font-bold text-gold-400 mb-6">Order Summary</h2>
+              <h2 className="text-2xl font-bold mb-8 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+                📋 Order Summary
+              </h2>
 
-              <div className="space-y-4 mb-6 border-b border-gold-400 pb-6">
-                <div className="flex justify-between text-cream-200">
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                className="space-y-4 mb-8 border-b border-yellow-400/30 pb-8"
+              >
+                <motion.div 
+                  whileHover={{ x: 5 }}
+                  className="flex justify-between text-gray-300"
+                >
                   <span>Subtotal:</span>
-                  <span>₹{total}</span>
-                </div>
-                <div className="flex justify-between text-cream-200">
+                  <span className="font-semibold">₹{total}</span>
+                </motion.div>
+                <motion.div 
+                  whileHover={{ x: 5 }}
+                  className="flex justify-between text-gray-300"
+                >
                   <span>Shipping:</span>
-                  <span className="text-gold-400">FREE</span>
-                </div>
-                <div className="flex justify-between text-cream-200">
+                  <span className="text-green-400 font-semibold">FREE 🚚</span>
+                </motion.div>
+                <motion.div 
+                  whileHover={{ x: 5 }}
+                  className="flex justify-between text-gray-300"
+                >
                   <span>Tax (18%):</span>
-                  <span>₹{tax}</span>
-                </div>
-              </div>
+                  <span className="font-semibold">₹{tax}</span>
+                </motion.div>
+              </motion.div>
 
-              <div className="flex justify-between text-2xl font-bold text-gold-400 mb-8">
-                <span>Total:</span>
-                <span>₹{finalTotal}</span>
+              <div className="flex justify-between text-2xl font-bold mb-8 p-4 bg-yellow-400/10 rounded-lg border border-yellow-400/30">
+                <span className="text-gray-100">Total:</span>
+                <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+                  ₹{finalTotal}
+                </span>
               </div>
 
               <motion.button
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ 
+                  scale: 1.05,
+                  boxShadow: '0 0 30px rgba(255, 200, 50, 0.5)'
+                }}
+                whileTap={{ scale: 0.95 }}
                 onClick={handleCheckout}
                 disabled={loading}
-                className="w-full bg-gold-500 hover:bg-gold-600 text-gray-900 font-bold py-3 rounded-lg mb-3 disabled:opacity-50"
+                className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-gray-900 font-bold py-4 rounded-lg mb-3 disabled:opacity-50 disabled:cursor-not-allowed transition text-lg"
               >
-                {loading ? 'Processing...' : (isLoggedIn ? 'Place Order' : 'Login to Checkout')}
+                {loading ? (
+                  <motion.span
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1, repeat: Infinity }}
+                    className="inline-block"
+                  >
+                    ⏳
+                  </motion.span>
+                ) : (
+                  `${isLoggedIn ? '✓ Place Order' : '🔐 Login to Checkout'}`
+                )}
               </motion.button>
 
               <motion.button
                 whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={clearCart}
-                className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-lg"
+                className="w-full bg-red-600/70 hover:bg-red-600 text-white font-bold py-3 rounded-lg transition"
               >
-                Clear Cart
+                🗑️ Clear Cart
               </motion.button>
             </motion.div>
           </div>
